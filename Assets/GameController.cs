@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     public int visibilityRange = 2;
 
     private List<GameObject> currentRoads = new List<GameObject>();
+    private float nextPositionRoad = 34.0f;
 
     void Start()
     {
@@ -23,13 +24,15 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (playerTransform.position.z % lengthRoad >= 3.0f && playerTransform.position.z % lengthRoad <= 3.015f)
+        if (playerTransform.position.z >= nextPositionRoad)
         {
             Debug.Log("New road!");
             currentRoads.Add(Instantiate(RoadPrefabs[Random.Range(0, RoadPrefabs.Length)], new Vector3(0, 0, lengthRoad * (visibilityRange + 1) + currentRoads[0].transform.position.z), Quaternion.Euler(0, 0, 0)));
             
             Destroy(currentRoads[0]);
             currentRoads.RemoveAt(0);
+
+            nextPositionRoad += lengthRoad;
         }
     }
 }
