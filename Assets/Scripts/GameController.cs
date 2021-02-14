@@ -26,9 +26,9 @@ public class GameController : MonoBehaviour
     {
         if (playerTransform.position.z >= nextPositionRoad)
         {
-            Debug.Log("New road!");
+            //Debug.Log("New road!");
             currentRoads.Add(Instantiate(RoadPrefabs[Random.Range(0, RoadPrefabs.Length)], new Vector3(0, 0, lengthRoad * (visibilityRange + 1) + currentRoads[0].transform.position.z), Quaternion.Euler(0, 0, 0)));
-            
+
             Destroy(currentRoads[0]);
             currentRoads.RemoveAt(0);
 

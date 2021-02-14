@@ -74,4 +74,10 @@ public class PlayerController : MonoBehaviour
         cc.Move(move);
         transform.rotation = Quaternion.Euler(0, currentTurn * 2, 0);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 }
+
