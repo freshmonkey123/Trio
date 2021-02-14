@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float turnSpeed = 0.05f;
     public float turnInertia = 0.05f;
     public float turnSlowdown = 0.0005f;
-    
+
     private float currentSpeed, currentTurn;
     private float modifierSlowdown;
 
