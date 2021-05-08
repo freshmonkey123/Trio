@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class PlayerController : MonoBehaviour
 
     private CharacterController cc;
     private Vector3 move = new Vector3(0, 0, 0);
+
+    public float Score = 0;
+    public GameObject ScoreText;
 
     void Start()
     {
@@ -75,9 +79,20 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, currentTurn * 2, 0);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter(Collision otherObj)
     {
-        
+        if (otherObj.gameObject.tag == "obstacle")
+        {
+            speed = 0;
+            Camera.main.GetComponent<UIManager>().Lose();
+        }
+    }
+
+    
+    public void Count()
+    {
+        //Score = position.z;
+        ScoreText.GetComponent<Text>().text = "Score: " + Score.ToString();
     }
 }
 
