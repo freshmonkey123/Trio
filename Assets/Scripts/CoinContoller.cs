@@ -22,6 +22,7 @@ public class CoinContoller : MonoBehaviour
             counter.upScore(1);
             Debug.Log("Score up. Current score: " + counter.getScore());
             Destroy(gameObject);
+            //counter = PlayerPrefs.SetInt("Score", counter);
         }
     }
 }

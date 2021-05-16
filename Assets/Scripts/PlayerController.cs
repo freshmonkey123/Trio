@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class PlayerController : MonoBehaviour
 {
+
     public float speed = 5.0f;
     public float turnSpeed = 0.05f;
     public float turnInertia = 0.05f;
@@ -17,7 +20,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 move = new Vector3(0, 0, 0);
 
     public float Score = 0;
-    public GameObject ScoreText;
 
     void Start()
     {
@@ -76,23 +78,19 @@ public class PlayerController : MonoBehaviour
         move.z = currentSpeed * Time.deltaTime;
 
         cc.Move(move);
-        transform.rotation = Quaternion.Euler(0, currentTurn * 2, 0);
+        transform.rotation = Quaternion.Euler(0, currentTurn * 2 + 90, 0);
     }
 
     void OnCollisionEnter(Collision otherObj)
     {
+        AudioSource audioData;
         if (otherObj.gameObject.tag == "obstacle")
         {
             speed = 0;
             Camera.main.GetComponent<UIManager>().Lose();
+            audioData = GetComponent<AudioSource>();
+            audioData.Play(0);
         }
-    }
-
-    
-    public void Count()
-    {
-        //Score = position.z;
-        ScoreText.GetComponent<Text>().text = "Score: " + Score.ToString();
     }
 }
 

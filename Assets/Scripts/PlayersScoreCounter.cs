@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class PlayersScoreCounter : MonoBehaviour
 {
-    private int score = 0;
+    private int score = 1;
 
     void Start()
     {
-        
+        score = PlayerPrefs.GetInt("Score");
     }
 
     void Update()
